@@ -22,11 +22,11 @@ public class POJONullController {
     public void test() throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new Jdk8Module());
-        UserDto result = objectMapper.readValue("{\"id\":\"1\", \"age\":30, \"name\":null}", UserDto.class);
+        UserDTO result = objectMapper.readValue("{\"id\":\"1\", \"age\":30, \"name\":null}", UserDTO.class);
         log.info("field name with null value dto:{} name:{}", result, result.getName().orElse("N/A"));
-        // field name with null value dto:UserDto(id=1, name=Optional.empty, age=Optional[30]) name:N/A
-        log.info("missing field name dto:{}", objectMapper.readValue("{\"id\":\"1\", \"age\":30}", UserDto.class));
-        // missing field name dto:UserDto(id=1, name=null, age=Optional[30])
+        // field name with null value dto:UserDTO(id=1, name=Optional.empty, age=Optional[30]) name:N/A
+        log.info("missing field name dto:{}", objectMapper.readValue("{\"id\":\"1\", \"age\":30}", UserDTO.class));
+        // missing field name dto:UserDTO(id=1, name=null, age=Optional[30])
     }
 
     @PostMapping("bad")
@@ -36,7 +36,7 @@ public class POJONullController {
     }
 
     @PostMapping("right")
-    public UserEntity right(@RequestBody UserDto user) {
+    public UserEntity right(@RequestBody UserDTO user) {
         if (user == null || user.getId() == null)
             throw new IllegalArgumentException("用户Id不能为空");
 

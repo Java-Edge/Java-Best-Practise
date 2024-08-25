@@ -38,7 +38,6 @@ public class UserConfig {
         return createUser(4, "QQ");
     }
 
-
     @Bean
     public List<User> users() {
 //        User user1 = createUser(1, "java");

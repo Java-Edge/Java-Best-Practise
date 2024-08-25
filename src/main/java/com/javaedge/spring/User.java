@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 通用实体类
- *
  * @author JavaEdge
  * @date 2021/9/12
  */
