@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author JavaEdge
  * @date 2021/10/18
  */
-//@WebFilter 不用即可
+@WebFilter
 @Slf4j
 @Order(2)
 public class AuthFilter implements Filter {

@@ -31,7 +31,7 @@ public class PermissionFilter implements Filter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
         String token = httpServletRequest.getHeader("token");
-        if (!"666".equals(token)) {
+        if (!"JavaEdge".equals(token)) {
             log.info("throw IllegalRequestException");
             resolver.resolveException(httpServletRequest, httpServletResponse, null,
                     new IllegalRequestException());

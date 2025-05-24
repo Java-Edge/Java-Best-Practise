@@ -13,7 +13,7 @@ import java.io.IOException;
  * @author JavaEdge
  * @date 2021/10/18
  */
-//@WebFilter 不用即可
+@WebFilter
 @Slf4j
 @Order(1)
 public class TimeCostFilter implements Filter {
