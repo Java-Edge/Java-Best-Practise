@@ -1,0 +1,57 @@
+package rules;
+
+import com.javaedge.drools.model.Order;
+
+// 规则1：订单金额大于等于1000时，积分为订单金额的10%
+rule "score-rule-1"
+    when
+        $order : Order(amount >= 1000)
+    then
+        $order.setScore($order.getAmount() / 10);
+        System.out.println("触发规则：订单金额大于等于1000，积分为订单金额的10%");
+end
+
+// 规则2：订单金额大于等于500但小于1000时，积分为订单金额的5%
+rule "score-rule-2"
+    when
+        $order : Order(amount >= 500 && amount < 1000)
+    then
+        $order.setScore($order.getAmount() / 20);
+        System.out.println("触发规则：订单金额大于等于500但小于1000，积分为订单金额的5%");
+end
+
+// 规则3：订单金额小于500时，积分为订单金额的1%
+rule "score-rule-3"
+    when
+        $order : Order(amount < 500)
+    then
+        $order.setScore($order.getAmount() / 100);
+        System.out.println("触发规则：订单金额小于500，积分为订单金额的1%");
+end
+
+// 规则4：订单类型为"VIP"时，额外增加订单金额5%的积分
+rule "score-rule-4"
+    when
+        $order : Order(type == "VIP", score != null)
+    then
+        $order.setScore($order.getScore() + $order.getAmount() / 20);
+        System.out.println("触发规则：订单类型为VIP，额外增加订单金额5%的积分");
+end
+
+// 规则5：订单金额大于等于1000时，折扣为订单金额的5%
+rule "discount-rule-1"
+    when
+        $order : Order(amount >= 1000)
+    then
+        $order.setDiscount($order.getAmount() / 20);
+        System.out.println("触发规则：订单金额大于等于1000，折扣为订单金额的5%");
+end
+
+// 规则6：订单类型为"VIP"时，额外增加5%的折扣
+rule "discount-rule-2"
+    when
+        $order : Order(type == "VIP", discount != null)
+    then
+        $order.setDiscount($order.getDiscount() + $order.getAmount() / 20);
+        System.out.println("触发规则：订单类型为VIP，额外增加5%的折扣");
+end

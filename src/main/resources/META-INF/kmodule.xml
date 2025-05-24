@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns="http://www.drools.org/xsd/kmodule">
+    <!-- 定义一个名为rules的KieBase -->
+    <kbase name="rules" packages="rules">
+        <!-- 定义一个名为ksession-rules的KieSession -->
+        <ksession name="ksession-rules"/>
+    </kbase>
+</kmodule>
