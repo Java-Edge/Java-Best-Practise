@@ -25,8 +25,8 @@ public class MyService implements ClassX {
     }
 
     // 该bean装配给MyService的构造器参数-myServiceName
-    @Bean
-    public String myServiceName() {
-        return "MyServiceName";
-    }
+//    @Bean
+//    public String myServiceName() {
+//        return "MyServiceName";
+//    }
 }
