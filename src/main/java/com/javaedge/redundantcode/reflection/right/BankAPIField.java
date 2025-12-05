@@ -7,9 +7,22 @@ import java.lang.annotation.*;
 @Documented
 @Inherited
 public @interface BankAPIField {
+
+    /**
+     * 参数的次序
+     * @return
+     */
     int order() default -1;
 
+    /**
+     * 长度
+     * @return
+     */
     int length() default -1;
 
+    /**
+     * 类型
+     * @return
+     */
     String type() default "";
 }

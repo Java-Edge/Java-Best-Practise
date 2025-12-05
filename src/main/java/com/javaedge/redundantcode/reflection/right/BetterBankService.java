@@ -31,7 +31,7 @@ public class BetterBankService {
     }
 
     private static String remoteCall(AbstractAPI api) throws IOException {
-        //从BankAPI注解获取请求地址
+        // 从BankAPI注解获取请求地址
         BankAPI bankAPI = api.getClass().getAnnotation(BankAPI.class);
         bankAPI.url();
         StringBuilder stringBuilder = new StringBuilder();
@@ -40,16 +40,16 @@ public class BetterBankService {
                 .sorted(Comparator.comparingInt(a -> a.getAnnotation(BankAPIField.class).order())) //根据注解中的order对字段排序
                 .peek(field -> field.setAccessible(true)) //设置可以访问私有字段
                 .forEach(field -> {
-                    //获得注解
+                    // 获得注解
                     BankAPIField bankAPIField = field.getAnnotation(BankAPIField.class);
                     Object value = "";
                     try {
-                        //反射获取字段值
+                        // 反射获取字段值
                         value = field.get(api);
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
-                    //根据字段类型以正确的填充方式格式化字符串
+                    // 根据字段类型以正确的填充方式格式化字符串
                     switch (bankAPIField.type()) {
                         case "S": {
                             stringBuilder.append(String.format("%-" + bankAPIField.length() + "s", value.toString()).replace(' ', '_'));
@@ -69,11 +69,11 @@ public class BetterBankService {
                             break;
                     }
                 });
-        //签名逻辑
+        // 签名逻辑
         stringBuilder.append(DigestUtils.md2Hex(stringBuilder.toString()));
         String param = stringBuilder.toString();
         long begin = System.currentTimeMillis();
-        //发请求
+        // 发请求
         String result = Request.Post("http://localhost:45678/reflection" + bankAPI.url())
                 .bodyString(param, ContentType.APPLICATION_JSON)
                 .execute().returnContent().asString();

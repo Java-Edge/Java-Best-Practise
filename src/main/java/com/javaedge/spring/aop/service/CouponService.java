@@ -19,7 +19,7 @@ public class CouponService {
 
     public void deposit() throws Exception {
         System.out.println("Coupon depositing ...");
-         this.pay();
+        this.pay();
         CouponService couponService = ((CouponService) AopContext.currentProxy());
         couponService.pay();
     }

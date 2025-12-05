@@ -69,7 +69,7 @@ public class CommonMistakesApplication {
     }
 
     private static void wrong() {
-        //ps aux | grep CommonMistakesApplication
+        //ps aux | grep BestPractiseApplication
         //lsof -p 63937
         LongAdder longAdder = new LongAdder();
         IntStream.rangeClosed(1, 1000000).forEach(i -> {

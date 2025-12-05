@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 @Slf4j
 public class MemberService {
-    private Map<Long, Boolean> welcomeStatus = new ConcurrentHashMap<>();
+    private final Map<Long, Boolean> welcomeStatus = new ConcurrentHashMap<>();
 
     @RabbitListener(queues = RabbitConfiguration.QUEUE)
     public void listen(User user) {
